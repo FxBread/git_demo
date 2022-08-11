@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MP_Teleop</title>
+</head>
+
+<style>
+.button {
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
+
+<body>
+
+<h1>MiniPupper Controller</h1>
+<p></p>
+
+<div id="main_movement" style="height:200px;width:100px;float:left;">
+<table border="9">
+<tr>
+<td></td>
+<td><button id="button up">&uarr;</button></td>
+<td></td>
+<tr>
+<td><button id="button left">&larr;</button></td>
+<td></td>
+<td><button id="button right">&rarr;</button></td>
+<tr>
+<td></td>
+<td><button id="button down">&darr;</button></td>
+<td></td>
+</div>
+
+<script>
+	var ws = new WebSocket("ws://127.0.0.1:5000/echo");  #连接server
+
+	ws.onmessage = function (event) {
+		content = document.createTextNode(event.data); # 接收数据
+		$("#time").html(content);
+
+	};
+
+</script>
+</body>
+</html>
