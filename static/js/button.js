@@ -33,7 +33,7 @@ var cmdVel = new ROSLIB.Topic({
     messageType: 'geometry_msgs/Twist'
 });
 
-var twist = new ROSLIB.Message({
+var up = new ROSLIB.Message({
         linear: {
             x: 0.1,
             y: 0.2,
@@ -47,10 +47,30 @@ var twist = new ROSLIB.Message({
     });
 
 function btnup(){
-    btnup1 = setInterval("cmdVel.publish(twist);",3000);
+    btnup1 = setInterval("cmdVel.publish(up);",3000);
 }
 
 function btnup_cancel(){
     clearInterval(btnup1);
 }
 
+var dn = new ROSLIB.Message({
+        linear: {
+            x: 0.1,
+            y: 0.2,
+            z: 0.3
+        },
+        angular: {
+            x: -0.1,
+            y: -0.2,
+            z: -0.3
+        }
+    });
+
+function btndn(){
+    btndn1 = setInterval("cmdVel.publish(dn);",3000);
+}
+
+function btndn_cancel(){
+    clearInterval(btndn1);
+}
