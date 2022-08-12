@@ -1,3 +1,4 @@
+from pickle import TRUE
 from flask import Flask, Response, redirect, url_for, request, session, abort, render_template
 
 
@@ -10,4 +11,4 @@ def index():
     return render_template('teleop.html')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=TRUE)

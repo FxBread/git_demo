@@ -33,44 +33,89 @@ var cmdVel = new ROSLIB.Topic({
     messageType: 'geometry_msgs/Twist'
 });
 
-var up = new ROSLIB.Message({
-        linear: {
-            x: 0.1,
-            y: 0.2,
-            z: 0.3
-        },
-        angular: {
-            x: -0.1,
-            y: -0.2,
-            z: -0.3
-        }
-    });
+var twist_up = new ROSLIB.Message({
+    linear: {
+        x: 0.5,
+        y: 0.0,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
 
-function btnup(){
-    btnup1 = setInterval("cmdVel.publish(up);",3000);
+function btnup() {
+    btnup1 = setInterval("cmdVel.publish(twist_up);", 3000);
 }
 
-function btnup_cancel(){
+function btnup_cancel() {
     clearInterval(btnup1);
 }
 
-var dn = new ROSLIB.Message({
-        linear: {
-            x: 0.1,
-            y: 0.2,
-            z: 0.3
-        },
-        angular: {
-            x: -0.1,
-            y: -0.2,
-            z: -0.3
-        }
-    });
+var twist_down = new ROSLIB.Message({
+    linear: {
+        x: -0.5,
+        y: 0.0,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
 
-function btndn(){
-    btndn1 = setInterval("cmdVel.publish(dn);",3000);
+function btndown() {
+    btnup2 = setInterval("cmdVel.publish(twist_down);", 3000);
 }
 
-function btndn_cancel(){
-    clearInterval(btndn1);
+function btndown_cancel() {
+    clearInterval(btnup2);
 }
+
+var twist_left = new ROSLIB.Message({
+    linear: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 1.0
+    }
+});
+
+function btnleft() {
+    btnup3 = setInterval("cmdVel.publish(twist_left);", 3000);
+}
+
+function btnleft_cancel() {
+    clearInterval(btnup3);
+}
+
+var twist_right = new ROSLIB.Message({
+    linear: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: -1.0
+    }
+});
+
+function btnright() {
+    btnup4 = setInterval("cmdVel.publish(twist_right);", 3000);
+}
+
+function btnright_cancel() {
+    clearInterval(btnup4);
+}
+
+
+
