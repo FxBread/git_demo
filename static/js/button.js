@@ -117,5 +117,106 @@ function btnright_cancel() {
     clearInterval(btnup4);
 }
 
+var w_down = false
+
+shortcut.add("W", function () {
+    if (w_down == false) {
+        console.log("W");
+        btnup()
+        w_down = true
+    }    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("W", function () {
+    if (w_down == true) {
+        console.log("Wp");
+        btnup_cancel()
+        w_down = false
+    }
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+
+shortcut.add("A", function () {
+    if (w_down == false) {
+        console.log("A");
+        btnleft()
+        w_down = true
+    }   
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("A", function () {
+    if (w_down == true) {
+        console.log("AP");
+        btnleft_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+
+
+
+
+shortcut.add("S", function () {
+    if (w_down == false) {
+        console.log("S");
+        btndown()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("S", function () {
+    if (w_down == true) {
+        console.log("SP");
+        btndown_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+
+shortcut.add("D", function () {
+    if (w_down == false) {
+        console.log("D");
+        btnright()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("D", function () {
+    if (w_down == true) {
+        console.log("DP");
+        btnright_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
 
 
