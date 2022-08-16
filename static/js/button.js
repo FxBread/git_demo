@@ -47,7 +47,7 @@ var twist_up = new ROSLIB.Message({
 });
 
 function btnup() {
-    btnup1 = setInterval("cmdVel.publish(twist_up);", 3000);
+    btnup1 = setInterval("cmdVel.publish(twist_up);", 1000);
 }
 
 function btnup_cancel() {
@@ -68,7 +68,7 @@ var twist_down = new ROSLIB.Message({
 });
 
 function btndown() {
-    btnup2 = setInterval("cmdVel.publish(twist_down);", 3000);
+    btnup2 = setInterval("cmdVel.publish(twist_down);", 1000);
 }
 
 function btndown_cancel() {
@@ -89,7 +89,7 @@ var twist_left = new ROSLIB.Message({
 });
 
 function btnleft() {
-    btnup3 = setInterval("cmdVel.publish(twist_left);", 3000);
+    btnup3 = setInterval("cmdVel.publish(twist_left);", 1000);
 }
 
 function btnleft_cancel() {
@@ -110,7 +110,7 @@ var twist_right = new ROSLIB.Message({
 });
 
 function btnright() {
-    btnup4 = setInterval("cmdVel.publish(twist_right);", 3000);
+    btnup4 = setInterval("cmdVel.publish(twist_right);", 1000);
 }
 
 function btnright_cancel() {
