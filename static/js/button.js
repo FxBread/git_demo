@@ -47,7 +47,7 @@ var twist_up = new ROSLIB.Message({
 });
 
 function btnup() {
-    btnup1 = setInterval("cmdVel.publish(twist_up);", 1000);
+    btnup1 = setInterval("cmdVel.publish(twist_up);", 500);
 }
 
 function btnup_cancel() {
@@ -68,7 +68,7 @@ var twist_down = new ROSLIB.Message({
 });
 
 function btndown() {
-    btnup2 = setInterval("cmdVel.publish(twist_down);", 1000);
+    btnup2 = setInterval("cmdVel.publish(twist_down);", 500);
 }
 
 function btndown_cancel() {
@@ -78,6 +78,112 @@ function btndown_cancel() {
 var twist_left = new ROSLIB.Message({
     linear: {
         x: 0.0,
+        y: 0.5,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
+
+function btnleft() {
+    btnup3 = setInterval("cmdVel.publish(twist_left);", 500);
+}
+
+function btnleft_cancel() {
+    clearInterval(btnup3);
+}
+
+var twist_right = new ROSLIB.Message({
+    linear: {
+        x: 0.0,
+        y: -0.5,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
+
+function btnright() {
+    btnup4 = setInterval("cmdVel.publish(twist_right);", 500);
+}
+
+function btnright_cancel() {
+    clearInterval(btnup4);
+}
+
+
+var twist_Lup = new ROSLIB.Message({
+    linear: {
+        x: 0.5,
+        y: 0.5,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
+
+function btnLup() {
+    btnup5 = setInterval("cmdVel.publish(twist_Lup);", 500);
+}
+
+function btnLup_cancel() {
+    clearInterval(btnup5);
+}
+
+var twist_Rup = new ROSLIB.Message({
+    linear: {
+        x: 0.5,
+        y: -0.5,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: -1.0
+    }
+});
+
+function btnRup() {
+    btnup6 = setInterval("cmdVel.publish(twist_Rup);", 500);
+}
+
+function btnRup_cancel() {
+    clearInterval(btnup6);
+}
+
+var twist_Ldown = new ROSLIB.Message({
+    linear: {
+        x: -0.5,
+        y: 0.5,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    }
+});
+
+function btnLdown() {
+    btnup7 = setInterval("cmdVel.publish(twist_Ldown);", 500);
+}
+
+function btnLdown_cancel() {
+    clearInterval(btnup7);
+}
+
+var twist_Rdown = new ROSLIB.Message({
+    linear: {
+        x: -0.5,
         y: 0.0,
         z: 0.0
     },
@@ -88,15 +194,15 @@ var twist_left = new ROSLIB.Message({
     }
 });
 
-function btnleft() {
-    btnup3 = setInterval("cmdVel.publish(twist_left);", 1000);
+function btnRdown() {
+    btnup8 = setInterval("cmdVel.publish(twist_Rdown);", 500);
 }
 
-function btnleft_cancel() {
-    clearInterval(btnup3);
+function btnRdown_cancel() {
+    clearInterval(btnup8);
 }
 
-var twist_right = new ROSLIB.Message({
+var twist_rotateL = new ROSLIB.Message({
     linear: {
         x: 0.0,
         y: 0.0,
@@ -109,12 +215,33 @@ var twist_right = new ROSLIB.Message({
     }
 });
 
-function btnright() {
-    btnup4 = setInterval("cmdVel.publish(twist_right);", 1000);
+function rotateL() {
+    btnup9 = setInterval("cmdVel.publish(twist_rotateL);", 500);
 }
 
-function btnright_cancel() {
-    clearInterval(btnup4);
+function rotateL_cancel() {
+    clearInterval(btnup9);
+}
+
+var twist_rotateR = new ROSLIB.Message({
+    linear: {
+        x: 0.0,
+        y: 0.0,
+        z: 0.0
+    },
+    angular: {
+        x: 0.0,
+        y: 0.0,
+        z: 1.0
+    }
+});
+
+function rotateR() {
+    btnup10 = setInterval("cmdVel.publish(twist_rotateR);", 500);
+}
+
+function rotateR_cancel() {
+    clearInterval(btnup10);
 }
 
 var w_down = false
@@ -218,5 +345,152 @@ shortcut.add("D", function () {
     'propagate': false,
     'target': document
 });
+
+shortcut.add("Q", function () {
+    if (w_down == false) {
+        console.log("Q");
+        btnLup()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("Q", function () {
+    if (w_down == true) {
+        console.log("QP");
+        btnLup_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+shortcut.add("E", function () {
+    if (w_down == false) {
+        console.log("E");
+        btnRup()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("E", function () {
+    if (w_down == true) {
+        console.log("EP");
+        btnRup_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+shortcut.add("Z", function () {
+    if (w_down == false) {
+        console.log("Z");
+        btnLdown()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("Z", function () {
+    if (w_down == true) {
+        console.log("ZP");
+        btnLdown_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+shortcut.add("C", function () {
+    if (w_down == false) {
+        console.log("C");
+        btnRdown()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("C", function () {
+    if (w_down == true) {
+        console.log("CP");
+        btnRdown_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+shortcut.add("J", function () {
+    if (w_down == false) {
+        console.log("J");
+        rotateR()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("J", function () {
+    if (w_down == true) {
+        console.log("JP");
+        rotateR_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+shortcut.add("K", function () {
+    if (w_down == false) {
+        console.log("K");
+        rotateL()
+        w_down = true
+    }
+    
+}, {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+});
+shortcut.add("K", function () {
+    if (w_down == true) {
+        console.log("KP");
+        rotateL_cancel()
+        w_down = false
+    } 
+}, {
+    'type': 'keyup',
+    'propagate': false,
+    'target': document
+});
+
+
+
 
 
