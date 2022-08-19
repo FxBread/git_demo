@@ -10,17 +10,7 @@
 	<script src="{{url_for('static', filename='js/button.js')}}"></script>
 
 </head>
-<style>
-	.button {
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		cursor: pointer;
-	}
-</style>
+
 
 <body>
 
@@ -42,12 +32,12 @@
 		</p>
 	</div>
 
-	<div id="onoff-switch" style="height:200px;width:100px;">
-		<button onmousedown="PS4on()" onmouseup="PS4off()">PS4 switch</button>
-		<button onmousedown="RaidarOn()" onmouseup="RaidarOff()">Raidar switch</button>
+	<div id="onoff-switch" style="height:100px;width:100px;">
+		<button onmousedown="ps4on()" onmouseup="ps4off()">PS4 switch</button>
+		<button onmousedown="raidarOn()" onmouseup="raidarOff()">Raidar switch</button>
 	</div>
 
-	<div id="main_movement" style="height:200px;width:100px;float:left;">
+	<div id="main_movement">
 		<table border="9" frame=void rules=none>
 			<tr>
 				<td><button onmousedown="btnLup()" onmouseup="btnLup_cancel()">&#8598;</button></td>
@@ -63,7 +53,7 @@
 				<td><button onmousedown="btnRdown()" onmouseup="btnRdown_cancel()">&#8600;</button></td>
 	</div>
 
-	<div id="Rotation" style="height:200px;width:100px;float:left;">
+	<div id="Rotation">
 		<table border="2" frame=void rules=none>
 			<td><button onmousedown="rotateR()" onmouseup="RotateR_cancel()">&#8634;</button></td>
 			<td><button onmousedown="rotateL()" onmouseup="RotateL_cancel()">&#8635;</button></td>
