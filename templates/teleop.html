@@ -27,14 +27,7 @@
     padding: 5px 0;
     margin-top: 0;
 }
-@media (max-width: 1146px){
-.enter {
-    width: 59px;
-}
-}
-.enter {
-    width: 66px;
-}
+
 .shift {
     display: flex;
     flex-flow: row nowrap;
@@ -45,7 +38,7 @@
 }
 
 .kk-key {
-    background-color: #0e4f63;
+    background-color: #19357b;
     color: #fdf6ff;
     font-family: vr-m,sans-serif;
     font-size: 11px;
@@ -61,10 +54,18 @@
     border-radius: 10px;
     box-shadow: 0 5px 0 rgb(0 0 0 / 20%);
 }
+button {
+	font-size: 20px;
+	margin: 2px;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3px;
+}
 </style>
 
 <body>
-
 	<h1>MiniPupper Controller</h1>
 
 	<div id="statusIndicator">
@@ -86,6 +87,7 @@
 		<button onmousedown="ps4on()" onmouseup="ps4off()">PS4 switch</button>
 		<button onmousedown="raidarOn()" onmouseup="raidarOff()">Raidar switch</button>
 	</div>
+	<br>
 
 	<div id="main_movement">
 		<table border="9" frame=void rules=none>
@@ -101,13 +103,17 @@
 				<td><button onmousedown="btnLdown()" onmouseup="btnLdown_cancel()">&#8601;</button></td>
 				<td><button onmousedown="btndown()" onmouseup="btndown_cancel()">&darr;</button></td>
 				<td><button onmousedown="btnRdown()" onmouseup="btnRdown_cancel()">&#8600;</button></td>
+		</table>
 	</div>
+	<br>
 
 	<div id="Rotation">
 		<table border="2" frame=void rules=none>
 			<td><button onmousedown="rotateR()" onmouseup="RotateR_cancel()">&#8634;</button></td>
 			<td><button onmousedown="rotateL()" onmouseup="RotateL_cancel()">&#8635;</button></td>
+		</table>
 	</div>
+	<br>
 
 	<div class="keyboard">
 		<div class="keyboard-row">
@@ -125,8 +131,7 @@
 		<kbd data-key="219" class="kk-key">{<span>[</span></kbd>
 		<kbd data-key="221" class="kk-key">}<span>]</span></kbd>
 		 <kbd data-key="220" class="kk-key">|<span>\</span></kbd>
-		</div>
-	</div>
+		</div></div>
 		<div class="keyboard-row">
 		<div class="keyboard-group">
 		<kbd data-key="65" class="kk-key key-press"><span>⇦</span>A</kbd>
@@ -135,14 +140,13 @@
 		<kbd data-key="70" class="kk-key">F</kbd>
 		<kbd data-key="71" class="kk-key">G</kbd>
 		<kbd data-key="72" class="kk-key">H</kbd>
-		<kbd data-key="74" class="kk-key">J</kbd>
-		<kbd data-key="75" class="kk-key">K</kbd>
+		<kbd data-key="74" class="kk-key key-press"><span>↺</span>J</kbd>
+		<kbd data-key="75" class="kk-key key-press"><span>↻</span>K</kbd>
 		<kbd data-key="76" class="kk-key">L</kbd>
 		<kbd data-key="186" class="kk-key">:<span>;</span></kbd>
 		<kbd data-key="222" class="kk-key">"<span>'</span></kbd>
 		<kbd data-key="13" class="kk-key enter">Enter</kbd>
-		</div>
-		</div>
+		</div></div>
 		<div class="keyboard-row">
 		<div class="keyboard-group">
 		<kbd data-key="90" class="kk-key key-press"><span>⇙</span>Z</kbd>
@@ -155,9 +159,9 @@
 		<kbd data-key="188" class="kk-key">&lt;<span>,</span></kbd>
 		<kbd data-key="190" class="kk-key">&gt;<span>.</span></kbd>
 		<kbd data-key="191" class="kk-key">?<span>/</span></kbd>
-		<kbd data-key="16" class="kk-key shift"><span>⇧</span>&nbsp;Shift</kbd>
-		</div>
-		</div>
+		<kbd data-key="16" class="kk-key shift r-s"><span>⇧</span>&nbsp;Shift</kbd>
+		</div></div>
+	</div>
 
 </body>
 
