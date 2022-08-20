@@ -1,32 +1,42 @@
-var ros = new ROSLIB.Ros({
-    url: 'ws://localhost:9090'
-});//connecting to rosbridge with websocket
+var linkstate = false
+function connection() {
+    var ros = new ROSLIB.Ros({
+        url: 'ws://localhost:9090'
+    });//connecting to rosbridge with websocket
 
-//If there is an error on the backend, an 'error' will be show
-ros.on('error', function (error) {
-    document.getElementById('connecting').style.display = 'none';
-    document.getElementById('connected').style.display = 'none';
-    document.getElementById('closed').style.display = 'none';
-    document.getElementById('error').style.display = 'inline';
-    console.log(error);
-});
+    //If there is an error on the backend, an 'error' will be show
+    ros.on('error', function (error) {
+        document.getElementById('connecting').style.display = 'none';
+        document.getElementById('connected').style.display = 'none';
+        document.getElementById('closed').style.display = 'none';
+        document.getElementById('error').style.display = 'inline';
+        console.log(error);
+    });
 
-// Find out exactly when we made a connection.
-ros.on('connection', function () {
-    console.log('Connection made!');
-    document.getElementById('connecting').style.display = 'none';
-    document.getElementById('error').style.display = 'none';
-    document.getElementById('closed').style.display = 'none';
-    document.getElementById('connected').style.display = 'inline';
-});
+    // Find out exactly when we made a connection.
+    ros.on('connection', function () {
+        console.log('Connection made!');
+        document.getElementById('connecting').style.display = 'none';
+        document.getElementById('error').style.display = 'none';
+        document.getElementById('closed').style.display = 'none';
+        document.getElementById('connected').style.display = 'inline';
+        linkstate = true;
+    });
 
-ros.on('close', function () {
-    console.log('Connection closed.');
-    document.getElementById('connecting').style.display = 'none';
-    document.getElementById('connected').style.display = 'none';
-    document.getElementById('closed').style.display = 'inline';
-});
-
+    ros.on('close', function () {
+        console.log('Connection closed.');
+        document.getElementById('connecting').style.display = 'none';
+        document.getElementById('connected').style.display = 'none';
+        document.getElementById('closed').style.display = 'inline';
+        linkstate = false;
+    });
+}
+function reconnection(){
+    if(!linkstate){
+        connection();
+    }
+    
+}
 var cmdVel = new ROSLIB.Topic({
     ros: ros,
     name: '/cmd_vel',
@@ -251,7 +261,7 @@ shortcut.add("W", function () {
         console.log("W");
         btnup()
         w_down = true
-    }    
+    }
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -275,7 +285,7 @@ shortcut.add("A", function () {
         console.log("A");
         btnleft()
         w_down = true
-    }   
+    }
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -286,7 +296,7 @@ shortcut.add("A", function () {
         console.log("AP");
         btnleft_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -303,7 +313,7 @@ shortcut.add("S", function () {
         btndown()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -314,7 +324,7 @@ shortcut.add("S", function () {
         console.log("SP");
         btndown_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -328,7 +338,7 @@ shortcut.add("D", function () {
         btnright()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -339,7 +349,7 @@ shortcut.add("D", function () {
         console.log("DP");
         btnright_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -352,7 +362,7 @@ shortcut.add("Q", function () {
         btnLup()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -363,7 +373,7 @@ shortcut.add("Q", function () {
         console.log("QP");
         btnLup_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -376,7 +386,7 @@ shortcut.add("E", function () {
         btnRup()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -387,7 +397,7 @@ shortcut.add("E", function () {
         console.log("EP");
         btnRup_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -400,7 +410,7 @@ shortcut.add("Z", function () {
         btnLdown()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -411,7 +421,7 @@ shortcut.add("Z", function () {
         console.log("ZP");
         btnLdown_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -424,7 +434,7 @@ shortcut.add("C", function () {
         btnRdown()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -435,7 +445,7 @@ shortcut.add("C", function () {
         console.log("CP");
         btnRdown_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -448,7 +458,7 @@ shortcut.add("J", function () {
         rotateR()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -459,7 +469,7 @@ shortcut.add("J", function () {
         console.log("JP");
         rotateR_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
@@ -472,7 +482,7 @@ shortcut.add("K", function () {
         rotateL()
         w_down = true
     }
-    
+
 }, {
     'type': 'keydown',
     'propagate': false,
@@ -483,7 +493,7 @@ shortcut.add("K", function () {
         console.log("KP");
         rotateL_cancel()
         w_down = false
-    } 
+    }
 }, {
     'type': 'keyup',
     'propagate': false,
