@@ -7,7 +7,6 @@
 	<script type="text/javascript"
 		src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 	<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
-	<script type="text/javascript" src="http://static.robotwebtools.org/ros3djs/current/ros3d.min.js"></script>
 	<script src="{{url_for('static', filename='js/shortcut.js')}}"></script>
 	<script src="{{url_for('static', filename='js/button.js')}}"></script>
 	<script src="{{url_for('static', filename='js/msg.js')}}"></script>
@@ -18,7 +17,7 @@
 </head>
 
 
-<body onload = "connection()">
+<body>
 	<h1>MiniPupper Controller</h1>
 
 	<div id="statusIndicator">
@@ -37,7 +36,6 @@
 	</div>
 
 	<div id="onoff-switch">
-		<button onmouseup="reconnection()">reconnection</button>
 		<button onmouseup="raidarOff()">Raidar off</button>
 		<button onmouseup="raidarOn()">Raidar on</button>
 	</div>
@@ -63,8 +61,8 @@
 
 	<div id="Rotation">
 		<table border="2" frame=void rules=none>
-			<td><button onmousedown="rotateR()" onmouseup="RotateR_cancel()">&#8634;</button></td>
-			<td><button onmousedown="rotateL()" onmouseup="RotateL_cancel()">&#8635;</button></td>
+			<td><button onmousedown="rotateR()" onmouseup="rotateR_cancel()">&#8634;</button></td>
+			<td><button onmousedown="rotateL()" onmouseup="rotateL_cancel()">&#8635;</button></td>
 		</table>
 	</div>
 	<br>
@@ -93,7 +91,9 @@
 		<kbd data-key="67" class="kk-key key-press"><span>⇘</span>C</kbd>
 		</div></div>
 	</div>
-
+	<div id="video">
+		<img src="{{ url_for('video_feed') }}">
+	</div>
 
 
 </body>

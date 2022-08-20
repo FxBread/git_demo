@@ -1,42 +1,36 @@
 var linkstate = false
-function connection() {
-    var ros = new ROSLIB.Ros({
-        url: 'ws://localhost:9090'
-    });//connecting to rosbridge with websocket
+ros = new ROSLIB.Ros({
+    url: 'ws://192.168.0.104:9090'
+});//connecting to rosbridge with websocket
 
-    //If there is an error on the backend, an 'error' will be show
-    ros.on('error', function (error) {
-        document.getElementById('connecting').style.display = 'none';
-        document.getElementById('connected').style.display = 'none';
-        document.getElementById('closed').style.display = 'none';
-        document.getElementById('error').style.display = 'inline';
-        console.log(error);
-    });
+//If there is an error on the backend, an 'error' will be show
+ros.on('error', function (error) {
+    document.getElementById('connecting').style.display = 'none';
+    document.getElementById('connected').style.display = 'none';
+    document.getElementById('closed').style.display = 'none';
+    document.getElementById('error').style.display = 'inline';
+    console.log(error);
+});
 
-    // Find out exactly when we made a connection.
-    ros.on('connection', function () {
-        console.log('Connection made!');
-        document.getElementById('connecting').style.display = 'none';
-        document.getElementById('error').style.display = 'none';
-        document.getElementById('closed').style.display = 'none';
-        document.getElementById('connected').style.display = 'inline';
-        linkstate = true;
-    });
+// Find out exactly when we made a connection.
+ros.on('connection', function () {
+    console.log('Connection made!');
+    document.getElementById('connecting').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('closed').style.display = 'none';
+    document.getElementById('connected').style.display = 'inline';
+    linkstate = true;
+});
 
-    ros.on('close', function () {
-        console.log('Connection closed.');
-        document.getElementById('connecting').style.display = 'none';
-        document.getElementById('connected').style.display = 'none';
-        document.getElementById('closed').style.display = 'inline';
-        linkstate = false;
-    });
-}
-function reconnection(){
-    if(!linkstate){
-        connection();
-    }
-    
-}
+ros.on('close', function () {
+    console.log('Connection closed.');
+    document.getElementById('connecting').style.display = 'none';
+    document.getElementById('connected').style.display = 'none';
+    document.getElementById('closed').style.display = 'inline';
+    linkstate = false;
+});
+
+
 var cmdVel = new ROSLIB.Topic({
     ros: ros,
     name: '/cmd_vel',
