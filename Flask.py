@@ -1,8 +1,6 @@
 from flask import Flask, Response, redirect, url_for, request, session, abort, render_template
 import cv2
 import depthai as dai
-from PIL import Image
-from io import BytesIO
 
 app = Flask(__name__)
 
@@ -27,10 +25,7 @@ def gen_frames():
         while True:
             in_rgb = q_rgb.get() 
             frame = in_rgb.getCvFrame()
-            image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-            stream_file = BytesIO()
-            image.save(stream_file, 'JPEG')
-            ret, buffer = cv2.imencode('.jpg', stream_file)
+            success, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
