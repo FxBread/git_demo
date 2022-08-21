@@ -7,7 +7,7 @@ app = Flask(__name__)
 def gen_frames():
     pipeline = dai.Pipeline()
     cam_rgb = pipeline.createColorCamera()
-    cam_rgb.setPreviewSize(300, 300)
+    cam_rgb.setPreviewSize(1920, 1080)
     cam_rgb.setBoardSocket(dai.CameraBoardSocket.RGB)
     cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
     cam_rgb.setInterleaved(False)
