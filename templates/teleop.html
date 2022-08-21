@@ -3,49 +3,22 @@
 
 <head>
 	<title>MP_Teleop</title>
+	<script type="text/javascript" src="http://static.robotwebtools.org/EaselJS/current/easeljs.min.js"></script>
 	<script type="text/javascript"
 		src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 	<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
-	<script src="{{url_for('static', filename='js/button.js')}}" ></script>
+	<script src="{{url_for('static', filename='js/shortcut.js')}}"></script>
+	<script src="{{url_for('static', filename='js/button.js')}}"></script>
+	<script src="{{url_for('static', filename='js/msg.js')}}"></script>
+	<link type="text/css" href="{{ url_for('static', filename='css/keyboard.css') }}" rel="stylesheet">
+
+	
+
 </head>
-<style>
-	.button {
-		padding: 15px 32px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		cursor: pointer;
-	}
-</style>
+
 
 <body>
-
 	<h1>MiniPupper Controller</h1>
-	<p></p>
-
-	<div id="main_movement" style="height:200px;width:100px;float:left;">
-		<table border="9" frame=void rules=none>
-			<tr>
-				<td><button onmousedown="btnLup()" onmouseup="btnLup_cancel()">&#8598;</button></td>
-				<td><button onmousedown="btnup()" onmouseup="btnup_cancel()">&uarr;</button></td>
-				<td><button onmousedown="btnRup()" onmouseup="btnRup_cancel()">&#8599;</button></td>
-			<tr>
-				<td><button onmousedown="btnleft()" onmouseup="btnleft_cancel()">&larr;</button></td>
-				<td></td>
-				<td><button onmousedown="btnright()" onmouseup="btnright_cancel()">&rarr;</button></td>
-			<tr>
-				<td><button onmousedown="btnLup()" onmouseup="btnLdown_cancel()">&#8601;</button></td>
-				<td><button onmousedown="btndown()" onmouseup="btndown_cancel()">&darr;</button></td>
-				<td><button onmousedown="btnRup()" onmouseup="btnRdown_cancel()">&#8600;</button></td>
-	</div>
-
-	<div id="Rotation" style="height:200px;width:100px;float:left;">
-		<table border="2" frame=void rules=none>
-			<td><button onmousedown="RotateR()" onmouseup="RotateR_cancel()">&#8634;</button></td>
-			<td><button onmousedown="RotateL()" onmouseup="RotateL_cancel()">&#8635;</button></td>
-	</div>
 
 	<div id="statusIndicator">
 		<p id="connecting">
@@ -61,6 +34,68 @@
 			Connection closed.
 		</p>
 	</div>
+
+	<div id="onoff-switch">
+		<button onmouseup="raidarOff()">Raidar off</button>
+		<button onmouseup="raidarOn()">Raidar on</button>
+	</div>
+	<br>
+
+	<div id="main_movement">
+		<table border="9" frame=void rules=none>
+			<tr>
+				<td><button onmousedown="btnLup()" onmouseup="btnLup_cancel()">&#8598;</button></td>
+				<td><button onmousedown="btnup()" onmouseup="btnup_cancel()">&uarr;</button></td>
+				<td><button onmousedown="btnRup()" onmouseup="btnRup_cancel()">&#8599;</button></td>
+			<tr>
+				<td><button onmousedown="btnleft()" onmouseup="btnleft_cancel()">&larr;</button></td>
+				<td></td>
+				<td><button onmousedown="btnright()" onmouseup="btnright_cancel()">&rarr;</button></td>
+			<tr>
+				<td><button onmousedown="btnLdown()" onmouseup="btnLdown_cancel()">&#8601;</button></td>
+				<td><button onmousedown="btndown()" onmouseup="btndown_cancel()">&darr;</button></td>
+				<td><button onmousedown="btnRdown()" onmouseup="btnRdown_cancel()">&#8600;</button></td>
+		</table>
+	</div>
+	<br>
+
+	<div id="Rotation">
+		<table border="2" frame=void rules=none>
+			<td><button onmousedown="rotateR()" onmouseup="rotateR_cancel()">&#8634;</button></td>
+			<td><button onmousedown="rotateL()" onmouseup="rotateL_cancel()">&#8635;</button></td>
+		</table>
+	</div>
+	<br>
+
+	<div class="keyboard">
+		<div class="keyboard-row">
+		<div class="keyboard-group">
+		<kbd data-key="81" class="kk-key key-press"><span>⇖</span>Q</kbd>
+		<kbd data-key="87" class="kk-key key-press"><span>⇧</span>W</kbd>
+		<kbd data-key="69" class="kk-key key-press"><span>⇗</span>E</kbd>
+		</div></div>
+		<div class="keyboard-row">
+		<div class="keyboard-group">
+		<kbd data-key="65" class="kk-key key-press"><span>⇦</span>A</kbd>
+		<kbd data-key="83" class="kk-key key-press"><span>⇩</span>S</kbd>
+		<kbd data-key="68" class="kk-key key-press"><span>⇨</span>D</kbd>
+		<kbd data-key="70" class="kk-key"> </kbd>
+		<kbd data-key="74" class="kk-key key-press"><span>↺</span>J</kbd>
+		<kbd data-key="75" class="kk-key key-press"><span>↻</span>K</kbd>
+
+		</div></div>
+		<div class="keyboard-row">
+		<div class="keyboard-group">
+		<kbd data-key="90" class="kk-key key-press"><span>⇙</span>Z</kbd>
+		<kbd data-key="88" class="kk-key"> </kbd>
+		<kbd data-key="67" class="kk-key key-press"><span>⇘</span>C</kbd>
+		</div></div>
+	</div>
+	<div id="video">
+		<img src="{{ url_for('video_feed') }}">
+	</div>
+
+
 </body>
 
 </html>
